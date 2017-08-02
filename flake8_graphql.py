@@ -20,4 +20,5 @@ class GraphQLChecker(object):
 
     def run(self):
         for node in ast.walk(self.tree):
-            print(node)
+            if isinstance(node, ast.Str):
+                yield (node.lineno, node.col_offset, "Found a string: " + node.s, type(self))
