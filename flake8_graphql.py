@@ -3,6 +3,8 @@ from __future__ import absolute_import, division, print_function, unicode_litera
 
 import ast
 
+from graphql import Source, parse
+
 
 class GraphQLChecker(object):
     """
@@ -14,12 +16,13 @@ class GraphQLChecker(object):
     def __init__(self, tree, *args, **kwargs):
         self.tree = tree
 
-    messages = {
-        'GQL100': 'Cannot parse graphql syntax',
-    }
-
     def run(self):
         for node in ast.walk(self.tree):
             if isinstance(node, ast.Call) and hasattr(node.func, 'id') and node.func.id == 'gql':
                 if isinstance(node.args[0], ast.Str):
-                    yield (node.lineno, node.col_offset, "Found a query: " + node.args[0].s, type(self))
+                    try:
+                        query = node.args[0].s
+                        Source(query)
+                        parse(query)
+                    except Exception as e:
+                        yield (node.lineno, node.col_offset, 'GQL100: ' + str(e), type(self))
