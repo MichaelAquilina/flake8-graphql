@@ -4,7 +4,11 @@ from __future__ import absolute_import, division, print_function, unicode_litera
 
 def test_GQL100_pass_1(flake8dir):
     flake8dir.make_example_py("""
-        query = "query { countries { name } }"
+        def gql(query):
+            return query
+
+
+        query = gql("query { countries { name } }")
     """)
     result = flake8dir.run_flake8()
     assert result.out_lines == []
@@ -12,7 +16,11 @@ def test_GQL100_pass_1(flake8dir):
 
 def test_GQL100_fail_1(flake8dir):
     flake8dir.make_example_py("""
-        query = "queryd { countries { name } }"
+        def gql(query):
+            return query
+
+
+        query = gql("queryd { countries { name } }")
     """)
     result = flake8dir.run_flake8()
     assert result.out_lines == [
