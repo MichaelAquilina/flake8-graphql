@@ -1,5 +1,7 @@
 from setuptools import setup
 
+from flake8_graphql import VERSION
+
 
 description = None
 with open("README.rst", 'r') as fp:
