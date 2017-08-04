@@ -28,4 +28,6 @@ class GraphQLChecker(object):
                         Source(query)
                         parse(query)
                     except GraphQLError as e:
-                        yield (node.lineno, node.col_offset, 'GQL100: ' + e.message, type(self))
+                        lineno = first_arg.lineno
+                        col_offset = first_arg.col_offset
+                        yield (lineno, col_offset, 'GQL100: ' + e.message, type(self))

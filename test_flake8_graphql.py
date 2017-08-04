@@ -33,7 +33,7 @@ def test_GQL100_fail_1(flake8dir):
     """)
     result = flake8dir.run_flake8()
     assert result.out_lines == [
-        './example.py:5:9: GQL100: Syntax Error GraphQL (1:1) Unexpected Name "queryd"',
+        './example.py:5:13: GQL100: Syntax Error GraphQL (1:1) Unexpected Name "queryd"',
         '',
         '1: queryd countries { name } }',
         '   ^',
@@ -59,7 +59,7 @@ def test_GQL100_fail_2(flake8dir):
     """)
     result = flake8dir.run_flake8()
     assert result.out_lines == [
-        './example.py:6:12: GQL100: Syntax Error GraphQL (4:9) Expected {, found Name "foobars"',
+        './example.py:14:0: GQL100: Syntax Error GraphQL (4:9) Expected {, found Name "foobars"',
         '',
         '3: ',
         '4:         foobars(boo:"A", baz:$bazValue){',
