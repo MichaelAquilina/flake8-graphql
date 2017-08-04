@@ -18,7 +18,7 @@ class GraphQLChecker(object):
 
     def run(self):
         for node in ast.walk(self.tree):
-            if isinstance(node, ast.Call) and hasattr(node.func, 'id') and node.func.id == 'gql':
+            if isinstance(node, ast.Call) and getattr(node.func, 'id') == 'gql':
                 if isinstance(node.args[0], ast.Str):
                     try:
                         query = node.args[0].s
