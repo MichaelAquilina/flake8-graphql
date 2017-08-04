@@ -1,7 +1,13 @@
 from setuptools import setup
 
+
+description = None
+with open("README.rst", 'r') as fp:
+    description = fp.read()
+
+
 requirements = None
-with open('requirements.txt', 'r') as fp:
+with open("requirements.txt", 'r') as fp:
     requirements = fp.readlines()
 
 
@@ -9,7 +15,7 @@ setup(
     name='flake8-graphql',
     version='0.0.1',
     description='A flake8 plugin to lint your graphql queries',
-    long_description='',
+    long_description=description,
     author="Michael Aquilina",
     author_email="michaelaquilina@gmail.com",
     url='https://github.com/michaelaquilina/flake8-graphql',
