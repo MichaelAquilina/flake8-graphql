@@ -1,7 +1,7 @@
-from setuptools import setup
-
-from flake8_graphql import VERSION
-
+try:
+    from setuptools import setup
+except ImportError:
+    from distutils.core import setup
 
 description = None
 with open("README.rst", 'r') as fp:
@@ -9,9 +9,8 @@ with open("README.rst", 'r') as fp:
 
 
 requirements = None
-with open("requirements.txt", 'r') as fp:
+with open('requirements.txt', 'r') as fp:
     requirements = fp.readlines()
-
 
 setup(
     name='flake8-graphql',
@@ -29,7 +28,7 @@ setup(
     py_modules=['flake8_graphql'],
     include_package_data=True,
     install_requires=requirements,
-    license="GPLv3",
+    license="AGPLv3",
     zip_safe=False,
     keywords='flake8, graphql',
     classifiers=[
