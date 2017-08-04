@@ -26,7 +26,7 @@ setup(
     install_requires=[
         'flake8>=3,!=3.2.0',
         'graphql-core',
-    ]
+    ],
     license="AGPLv3",
     zip_safe=False,
     keywords='flake8, graphql',
