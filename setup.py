@@ -1,5 +1,9 @@
 from setuptools import setup
 
+requirements = None
+with open('requirements.txt', 'r') as fp:
+    requirements = fp.readlines()
+
 
 setup(
     name='flake8-graphql',
@@ -16,9 +20,7 @@ setup(
     },
     py_modules=['flake8_graphql'],
     include_package_data=True,
-    install_requires=[
-        'flake8!=3.2.0',
-    ],
+    install_requires=requirements,
     license="GPLv3",
     zip_safe=False,
     keywords='flake8, graphql',
