@@ -8,10 +8,6 @@ with open("README.rst", 'r') as fp:
     description = fp.read()
 
 
-requirements = None
-with open('requirements.txt', 'r') as fp:
-    requirements = fp.readlines()
-
 setup(
     name='flake8-graphql',
     version='0.0.1',
@@ -27,7 +23,10 @@ setup(
     },
     py_modules=['flake8_graphql'],
     include_package_data=True,
-    install_requires=requirements,
+    install_requires=[
+        'flake8>=3,!=3.2.0',
+        'graphql-core',
+    ]
     license="AGPLv3",
     zip_safe=False,
     keywords='flake8, graphql',
