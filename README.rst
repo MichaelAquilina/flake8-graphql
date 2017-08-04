@@ -7,7 +7,7 @@ Plugin for linting graphql query strings within your code.
 
 Mark your query strings with any function named gql to perform linting:
 
-code:: python
+.. code:: python
 
     def gql(query):
         return query
