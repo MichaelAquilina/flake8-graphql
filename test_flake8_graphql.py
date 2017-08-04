@@ -24,5 +24,5 @@ def test_GQL100_fail_1(flake8dir):
     """)
     result = flake8dir.run_flake8()
     assert result.out_lines[0] == (
-        './example.py:5:9: GQL100: Syntax Error GraphQL (1:1) Unexpected Name "queryd"'
+        './example.py:5:13: GQL100: Syntax Error GraphQL (1:1) Unexpected Name "queryd"'
     )
