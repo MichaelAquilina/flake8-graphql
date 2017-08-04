@@ -4,6 +4,7 @@ from __future__ import absolute_import, division, print_function, unicode_litera
 import ast
 
 from graphql import Source, parse
+from graphql.error import GraphQLError
 
 
 class GraphQLChecker(object):
@@ -27,5 +28,5 @@ class GraphQLChecker(object):
                     try:
                         Source(query)
                         parse(query)
-                    except Exception as e:
+                    except GraphQLError as e:
                         yield (node.lineno, node.col_offset, 'GQL100: ' + str(e), type(self))
