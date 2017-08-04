@@ -39,6 +39,7 @@ def test_GQL100_fail_1(flake8dir):
         '   ^',
     ]
 
+
 def test_GQL100_fail_2(flake8dir):
     flake8dir.make_example_py("""
     def gql(q):
