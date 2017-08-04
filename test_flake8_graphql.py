@@ -38,3 +38,30 @@ def test_GQL100_fail_1(flake8dir):
         '1: queryd countries { name } }',
         '   ^',
     ]
+
+def test_GQL100_fail_2(flake8dir):
+    flake8dir.make_example_py("""
+    def gql(q):
+        return q
+
+
+    def my_function():
+        return gql('''
+        query FooQuery($bazValue:String!)
+
+            foobars(boo:"A", baz:$bazValue){
+                name
+                surname
+            }
+        }
+        ''')
+    """)
+    result = flake8dir.run_flake8()
+    assert result.out_lines == [
+        './example.py:6:12: GQL100: Syntax Error GraphQL (4:9) Expected {, found Name "foobars"',
+        '',
+        '3: ',
+        '4:         foobars(boo:"A", baz:$bazValue){',
+        '           ^',
+        '5:             name',
+    ]
