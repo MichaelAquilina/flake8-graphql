@@ -1,6 +1,24 @@
 # -*- encoding:utf-8 -*-
 from __future__ import absolute_import, division, print_function, unicode_literals
 
+import tempfile
+
+
+def schema():
+    schema = """
+    type Query {
+        countries: [Country!]!
+    }
+
+    type Country {
+        name: String!
+    }
+    """
+    _, path = tempfile.mkstemp()
+    with open(path, 'w') as fp:
+        fp.write(schema)
+    return path
+
 
 def test_no_query(flake8dir):
     flake8dir.make_example_py("""
@@ -17,7 +35,9 @@ def test_GQL100_pass_1(flake8dir):
 
         query = gql("query { countries { name } }")
     """)
-    result = flake8dir.run_flake8('--select=GQL')
+    path = schema()
+
+    result = flake8dir.run_flake8(['--select=GQL', '--gql-schema=' + path])
     assert result.out_lines == []
 
 

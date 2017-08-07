@@ -23,5 +23,9 @@ Mark your query strings with any function named gql to perform linting:
     """)
 
 
+This linter started off as a fork from grapql-checker_
+
+.. _graphql-checker: https://github.com/graphql-python/gql/tree/master/gql-checker
+
 .. |TravisCI| image:: https://travis-ci.org/MichaelAquilina/flake8-graphql.svg?branch=master
    :target: https://travis-ci.org/MicahelAquilina/flake8-graphql
