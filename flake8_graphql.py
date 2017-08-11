@@ -20,7 +20,7 @@ class GraphQLChecker(object):
     @classmethod
     def add_options(cls, parser):
         parser.add_option(
-            '--gql-caller',
+            '--gql-identifier',
             type='string',
             default='gql',
             help='Name of function or class to identify GraphQL strings with',
@@ -29,11 +29,11 @@ class GraphQLChecker(object):
 
     @classmethod
     def parse_options(cls, options):
-        cls.gql_caller = options.gql_caller
+        cls.gql_identifier = options.gql_identifier
 
     def run(self):
         for node in ast.walk(self.tree):
-            if isinstance(node, ast.Call) and getattr(node.func, 'id', None) == self.gql_caller:
+            if isinstance(node, ast.Call) and getattr(node.func, 'id', None) == self.gql_identifier:
                 first_arg = node.args[0]
 
                 if isinstance(first_arg, ast.Str):
