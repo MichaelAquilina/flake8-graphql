@@ -33,10 +33,8 @@ be set with command line arguments or within ``setup.cfg``.
 
 .. code:: python
 
-    class GQL(object):
-        def __init__(self, query):
-            self.query = query
-
+    class GQL(str):
+        pass
 
     myquery = GQL("""
     {
