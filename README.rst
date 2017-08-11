@@ -1,7 +1,7 @@
 Flake8 GraphQL
 ==============
 
-|TravisCI|
+|TravisCI| |PyPi|
 
 Plugin for linting graphql query strings within your code.
 
@@ -25,3 +25,6 @@ Mark your query strings with any function named gql to perform linting:
 
 .. |TravisCI| image:: https://travis-ci.org/MichaelAquilina/flake8-graphql.svg?branch=master
    :target: https://travis-ci.org/MicahelAquilina/flake8-graphql
+
+.. |PyPi| image:: https://badge.fury.io/py/flake8-graphql.svg
+   :target: https://badge.fury.io/py/flake8-graphql
