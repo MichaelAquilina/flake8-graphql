@@ -10,7 +10,7 @@ with open("README.rst", 'r') as fp:
 
 setup(
     name='flake8-graphql',
-    version='0.2.4',
+    version='0.2.5',
     description='A flake8 plugin to lint your graphql queries',
     long_description=description,
     author="Michael Aquilina",
