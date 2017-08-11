@@ -21,7 +21,7 @@ class GraphQLChecker(object):
     def add_options(cls, parser):
         parser.add_option(
             '--gql-identifier',
-            type='string',
+            type=str,
             default='gql',
             help='Name of function or class to identify GraphQL strings with',
             parse_from_config=True,
