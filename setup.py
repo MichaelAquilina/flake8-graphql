@@ -18,7 +18,7 @@ setup(
     url='https://github.com/michaelaquilina/flake8-graphql',
     entry_points={
         'flake8.extension': [
-            'GQL = flake8_graphql:GraphQLChecker',
+            'G = flake8_graphql:GraphQLChecker',
         ],
     },
     py_modules=['flake8_graphql'],
