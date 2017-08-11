@@ -12,7 +12,7 @@ class GraphQLChecker(object):
     flake8 plugin that lints your graphql strings
     """
     name = 'flake8-graphql'
-    version = '0.2.1'
+    version = '0.2.2'
 
     def __init__(self, tree, *args, **kwargs):
         self.tree = tree
