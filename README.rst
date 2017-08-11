@@ -23,7 +23,8 @@ Mark your query strings with any function or class named ``gql`` to perform lint
     }
     """)
 
-You can also customise the identifier to any value with the ``--gql-identifier`` option.
+You can also customise the identifier to any value with the ``--gql-identifier`` option. This can
+be set with command line arguments or within ``setup.cfg``.
 
 .. code:: shell
 
