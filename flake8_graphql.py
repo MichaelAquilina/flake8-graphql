@@ -2,9 +2,27 @@
 from __future__ import absolute_import, division, print_function, unicode_literals
 
 import ast
+import collections
+import re
 
 from graphql import Source, parse
 from graphql.error import GraphQLError
+
+
+Position = collections.namedtuple('Position', ['line_no', 'col_offset'])
+
+
+def get_col_line_offset(message):
+    """
+    Retrieve the line and column offset from a GraphQL erro message
+    """
+    pattern = re.compile(r'\((?P<line_no>\d+):(?P<col_offset>\d+)\)')
+    match = pattern.search(message)
+    if match is None:
+        return None
+
+    groupdict = match.groupdict()
+    return Position(int(groupdict['line_no']), int(groupdict['col_offset']))
 
 
 class GraphQLChecker(object):
@@ -42,5 +60,13 @@ class GraphQLChecker(object):
                         Source(query)
                         parse(query)
                     except GraphQLError as e:
+                        import ipdb; ipdb.set_trace()
+                        line_no = node.lineno
+                        col_offset = node.col_offset
+
                         lines = e.message.split('\n')
-                        yield (node.lineno, node.col_offset, 'G100 ' + lines[0], type(self))
+                        position = get_col_line_offset(lines[0])
+                        if position is not None:
+                            line_no += position.line_no - 1
+
+                        yield (line_no, col_offset, 'G100 ' + lines[0], type(self))

@@ -1,6 +1,21 @@
 # -*- encoding:utf-8 -*-
 from __future__ import absolute_import, division, print_function, unicode_literals
 
+from flake8_graphql import get_col_line_offset
+
+
+class TestGetCollLineOffset(object):
+    def test_empty_string(self):
+        assert get_col_line_offset('') is None
+
+    def test_no_position(self):
+        assert get_col_line_offset('This text has no position') is None
+
+    def test_correct_output(self):
+        position = get_col_line_offset('GQL Error (14:10) error')
+        assert position.line_no == 14
+        assert position.col_offset == 10
+
 
 def test_no_query(flake8dir):
     flake8dir.make_example_py("""
@@ -88,7 +103,7 @@ def test_GQL100_import_fail(flake8dir):
     """)
     result = flake8dir.run_flake8(['--select=G'])
     assert result.out_lines == [
-        './example.py:4:12: G100 Syntax Error GraphQL (4:9) Expected {, found Name "foobars"',
+        './example.py:7:12: G100 Syntax Error GraphQL (4:9) Expected {, found Name "foobars"',
     ]
 
 
@@ -109,5 +124,5 @@ def test_GQL100_custom_identifer_fail(flake8dir):
     """)
     result = flake8dir.run_flake8(['--select=G', '--gql-identifier=GQL'])
     assert result.out_lines == [
-        './example.py:4:12: G100 Syntax Error GraphQL (4:9) Expected {, found Name "foobars"',
+        './example.py:7:12: G100 Syntax Error GraphQL (4:9) Expected {, found Name "foobars"',
     ]
